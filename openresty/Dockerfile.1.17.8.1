@@ -46,6 +46,7 @@ ARG RESTY_CONFIG_OPTIONS="\
     --with-sha1-asm \
     --with-stream \
     --with-stream_ssl_module \
+    --with-openssl-opt=enable-tls1_3 \
     --with-threads \
     "
 ARG RESTY_CONFIG_OPTIONS_MORE=""
