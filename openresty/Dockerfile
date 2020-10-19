@@ -96,6 +96,7 @@ RUN apk add --no-cache --virtual .build-deps \
         gd \
         geoip \
         libgcc \
+        tzdata \
         libxslt \
         zlib \
         ${RESTY_ADD_PACKAGE_RUNDEPS} \
@@ -141,6 +142,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && eval ./configure -j${RESTY_J} ${_RESTY_CONFIG_DEPS} ${RESTY_CONFIG_OPTIONS} ${RESTY_CONFIG_OPTIONS_MORE} ${RESTY_LUAJIT_OPTIONS} \
     && make -j${RESTY_J} \
     && make -j${RESTY_J} install \
+    && cp -R /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' > /etc/timezone \
     && cd /tmp \
     && if [ -n "${RESTY_EVAL_POST_MAKE}" ]; then eval $(echo ${RESTY_EVAL_POST_MAKE}); fi \
     && rm -rf \
