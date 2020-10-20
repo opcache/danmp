@@ -159,9 +159,9 @@ RUN apk add --no-cache --virtual .build-deps \
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
 
 # Copy nginx configuration files
-COPY /openresty/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+COPY /openresty/nginx.conf /usr/local/openresty/nginx/conf/nginx-no.conf
 COPY /openresty/nginx.vh.default.conf /etc/nginx/conf.d/default.conf
-COPY /openresty/nginx-waf.conf /usr/local/openresty/nginx/conf/nginx-waf.conf
+COPY /openresty/nginx-waf.conf /usr/local/openresty/nginx/conf/nginx.conf
 
 CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
 
