@@ -27,6 +27,7 @@ RUN set -eux \
         libmcrypt \
         libpng \
         libpq \
+        libgd \
         libssh2 \
         libstdc++ \
         libtool \
@@ -68,6 +69,7 @@ RUN set -eux \
         libxpm-dev \
         libxslt-dev \
         libzip-dev \
+        gd-dev \
         linux-headers \
         openssl-dev \
         pcre-dev \
