@@ -49,7 +49,7 @@ RUN set -ex \
                 && docker-php-ext-enable swoole \
         && apk del .phpize-deps
 
-ADD php-fpm-7.4.21/install /install
+ADD php-fpm-7.4.21a/install /install
 
 RUN /bin/cp /install/so/*.so  /usr/local/lib/php/extensions/no-debug-non-zts-20180731/  && \
     /bin/cp /install/php.ini  /usr/local/etc/php/php.ini  && \
