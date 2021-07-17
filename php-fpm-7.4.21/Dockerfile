@@ -1,4 +1,4 @@
-FROM php:7.4.21-fpm-alpine3.14
+FROM php:7.4.20-fpm-alpine3.14
 
 LABEL Maintainer="Jose Quintana <git.io/joseluisq>" \
     Description="PHP-FPM v7.4 with essential extensions on top of Alpine Linux."
