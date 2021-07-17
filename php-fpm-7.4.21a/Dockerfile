@@ -1,4 +1,4 @@
-FROM php:7.4.20-fpm-alpine3.14
+FROM php:7.4.20-fpm-alpine3.13
 LABEL maintainer="ppabc <ppabc@qq.com>" version="1.0"
 ENV SWOOLE_VERSION=4.7.0 \
     REDIS_VERSION=5.3.3
@@ -19,7 +19,7 @@ RUN set -ex \
         && apk add --no-cache libaio \
          linux-headers \
          libaio-dev libzip-dev libtool libzip libpng libstdc++ libpng libpng-dev freetype freetype-dev libjpeg-turbo-dev libmcrypt-dev jpeg jpeg-dev \
-	 hiredis-dev gcc g++  make autoconf imagemagick imagemagick-dev  \
+	 hiredis-dev imagemagick imagemagick-dev  \
          openssl-dev \
          libstdc++ \
          librdkafka-dev \
@@ -49,7 +49,7 @@ RUN set -ex \
                 && docker-php-ext-enable swoole \
         && apk del .phpize-deps
 
-ADD php-fpm-7.4.21a/install /install
+ADD php-fpm-7.3.29/install /install
 
 RUN /bin/cp /install/so/*.so  /usr/local/lib/php/extensions/no-debug-non-zts-20180731/  && \
     /bin/cp /install/php.ini  /usr/local/etc/php/php.ini  && \
