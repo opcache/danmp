@@ -25,7 +25,7 @@ RUN set -ex \
          librdkafka-dev \
         # php extension: redis
 
-        && docker-php-ext-enable redis \
+
         # php extension: pdo_mysql
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install ctype json mbstring zip opcache \
