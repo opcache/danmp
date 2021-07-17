@@ -1,4 +1,4 @@
-FROM php:7.4.20-fpm-alpine3.13
+FROM php:7.4.12-fpm-alpine3.11
 LABEL maintainer="ppabc <ppabc@qq.com>" version="1.0"
 ENV SWOOLE_VERSION=4.7.0 \
     REDIS_VERSION=5.3.3
