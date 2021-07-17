@@ -24,7 +24,7 @@ RUN set -ex \
          libstdc++ \
          librdkafka-dev \
         # php extension: redis
-        && pecl install redis.tgz \
+
         && docker-php-ext-enable redis \
         # php extension: pdo_mysql
         && docker-php-ext-install pdo_mysql \
