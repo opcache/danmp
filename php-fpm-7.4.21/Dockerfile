@@ -1,7 +1,7 @@
 FROM php:7.4.21-fpm-alpine3.14
 LABEL maintainer="ppabc <ppabc@qq.com>" version="1.0"
-ENV SWOOLE_VERSION=4.1.2 \
-    REDIS_VERSION=4.0.2
+ENV SWOOLE_VERSION=4.7.0 \
+    REDIS_VERSION=5.3.3
 
 #Timezone and lib
 RUN apk add -U tzdata \
@@ -19,13 +19,13 @@ RUN set -ex \
         && apk add --no-cache libaio \
          linux-headers \
          libaio-dev libzip-dev libpng libpng-dev freetype freetype-dev libjpeg-turbo-dev libmcrypt-dev jpeg jpeg-dev \
-	 hiredis-dev gcc g++ imagemagick imagemagick-dev  \
+	 hiredis-dev gcc g++  make autoconf imagemagick imagemagick-dev  \
          openssl-dev \
          libstdc++ \
          librdkafka-dev \
         # php extension: redis
-
-
+        && pecl install redis.tgz \
+        && docker-php-ext-enable redis \
         # php extension: pdo_mysql
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install ctype json mbstring zip opcache \
