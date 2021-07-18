@@ -18,17 +18,18 @@ RUN set -ex \
         # for swoole ext
         && apk add --no-cache libaio \
          linux-headers \
-         libaio-dev libzip-dev libtool libzip libpng libstdc++ libpng libpng-dev freetype freetype-dev libjpeg-turbo-dev libmcrypt-dev jpeg jpeg-dev \
-	 hiredis-dev imagemagick imagemagick-dev  \
+         libaio-dev libzip-dev libxpm-dev oniguruma-dev file gcc g++ libc-dev make autoconf libwebp-dev libtool libzip libpng libstdc++ libpng libpng-dev freetype freetype-dev libjpeg-turbo-dev libmcrypt-dev jpeg jpeg-dev \
+         hiredis-dev imagemagick imagemagick-dev  \
          openssl-dev \
          libstdc++ \
          librdkafka-dev \
         # php extension: redis
-
+        && pecl install redis.tgz \
+        && docker-php-ext-enable redis \
         # php extension: pdo_mysql
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install ctype json mbstring zip opcache \
-        && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
+        && docker-php-ext-configure gd --enable-gd --with-webp --with-jpeg --with-xpm --with-freetype --enable-gd-jis-conv \
         && docker-php-ext-install  gd   \
         && docker-php-ext-install mysqli \
         # php extension: bcmath
@@ -47,9 +48,7 @@ RUN set -ex \
                 && rm -r swoole \
                 && docker-php-ext-enable swoole \
         && apk del .phpize-deps
-
-ADD php-fpm-7.3.29/install /install
-
+ADD php-fpm-7.4.21a/install /install
 RUN /bin/cp /install/so/*.so  /usr/local/lib/php/extensions/no-debug-non-zts-20180731/  && \
     /bin/cp /install/php.ini  /usr/local/etc/php/php.ini  && \
     /bin/cp /install/php-fpm.conf  /usr/local/etc/php-fpm.conf  && \
